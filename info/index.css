@@ -1,0 +1,81 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+section {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+.chart-box {
+    flex:1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+#radar.chart-box {
+    flex: 0;
+}
+
+
+
+#chart_heatmap, #chart_scatterplot, #chart_radarchart {
+    width: 100%;
+    height: 100%;
+}
+
+#dashboard {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.8fr 1.2fr;
+    gap: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+#heatmap {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#radarChart {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#scatterPlot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     grid-column: 1/3;
+    grid-row: 2;
+}
+
+.radar-controls {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-bottom: 6px;
+}
+
+.radar-controls select {
+    width: 140px;
+    padding: 6px 10px;
+}
+
+#radarChart.chart-box {
+    min-height: 350px;
+}
