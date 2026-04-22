@@ -1,16 +1,3 @@
-/* body {
-  font-family: Helvetica, sans-serif;
-  margin: 0;
-  padding: 24px;
-  background: #FFF2EF; 
-  color: #1A2A4F;
-}
-
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-} */
-
 h1 {
   margin-bottom: 8px;
 }
@@ -21,29 +8,11 @@ p {
   line-height: 1.5;
 }
 
-#chart {
+#chart_scatterplot {
   background: #FFF2EF; 
   border: 1px solid #ccc;
   padding: 12px;
   overflow: visible;
-}
-
-.tooltip {
-  position: absolute;
-  background-color: rgba(26, 42, 79, 0.88);
-  color: #FFF2EF;
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  line-height: 1.4;
-  pointer-events: none;
-  box-shadow: 0 2px 8px rgba(26, 42, 79, 0.25);
-
-  width: 220px;
-  min-height: 150px;
-  box-sizing: border-box;
-
-  visibility: hidden;
 }
 
 .axis-label {
@@ -155,25 +124,6 @@ path.domain {
   margin-bottom: 20px;
   flex-wrap: nowrap;
 }
-
-/* .controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 0;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.age-filter {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 0;
-  flex: 0 0 auto;
-} */
 
 .age-slider-wrapper {
   width: 100%;
@@ -314,4 +264,23 @@ path.domain {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+
+
+#tooltip_scatterplot {
+  position: fixed;
+  visibility: hidden;
+  background-color: rgba(26, 42, 79, 0.95);
+  color: #FFF2EF;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(26, 42, 79, 0.25);
+  width: 220px;
+  min-height: 150px;
+  box-sizing: border-box;
+  z-index: 99999;
 }

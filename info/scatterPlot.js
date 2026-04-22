@@ -263,6 +263,8 @@ function drawPoints(filteredData) {
 
       tooltip
         .style("visibility", "visible")
+        .style("left", `${event.clientX + 12}px`)
+        .style("top", `${event.clientY - 28}px`)
         .html(`
           <strong>User:</strong> ${d.user_id}<br>
           <strong>Gender:</strong> ${d.gender}<br>
