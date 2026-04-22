@@ -88,7 +88,7 @@ var RadarChart = {
        .attr("x", function(d){return levelFactor*(1-Math.sin(0));})
        .attr("y", function(d){return levelFactor*(1-Math.cos(0));})
        .attr("class", "legend")
-       .style("font-family", "sans-serif")
+       .style("font-family", "Helvetica, Arial, sans-serif")
        .style("font-size", "8px")
        .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
        .attr("fill", "#737373")
@@ -115,7 +115,7 @@ var RadarChart = {
     axis.append("text")
         .attr("class", "legend")
         .text(function(d){return d})
-        .style("font-family", "sans-serif")
+        .style("font-family", "Helvetica, Arial, sans-serif")
         .style("font-size", "9px")
         .attr("text-anchor", "middle")
         .attr("dy", "1.5em")
@@ -225,7 +225,7 @@ var RadarChart = {
     //Tooltip
     tooltip = g.append('text')
                .style('opacity', 0)
-               .style('font-family', 'sans-serif')
+               .style('font-family', 'Helvetica, Arial, sans-serif')
                .style('font-size', '13px');
   }
 };

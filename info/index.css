@@ -1,14 +1,15 @@
-html,body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-
 section {
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -18,29 +19,28 @@ section {
 }
 
 .chart-box {
-    flex:1;
+    flex: 1;
     min-width: 0;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#radar.chart-box {
-    flex: 0;
-}
-
-
-
-#chart_heatmap, #chart_scatterplot, #chart_radarchart {
+#chart_heatmap,
+#chart_scatterplot,
+#chart_radarchart {
     width: 100%;
     height: 100%;
 }
 
 #dashboard {
     width: 100vw;
-    height: 100vh;
+    min-height: 1200px;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.8fr 1.2fr;
+    grid-template-rows: minmax(460px, auto) minmax(640px, auto);
     gap: 12px;
     padding: 12px;
     box-sizing: border-box;
@@ -59,8 +59,8 @@ section {
 #scatterPlot {
     display: flex;
     flex-direction: column;
-    align-items: center;
-     grid-column: 1/3;
+    align-items: stretch;
+    grid-column: 1 / 3;
     grid-row: 2;
 }
 
@@ -76,6 +76,71 @@ section {
     padding: 6px 10px;
 }
 
-#radarChart.chart-box {
-    min-height: 350px;
+#heatmap .chart-box,
+#radarChart .chart-box {
+    min-height: 420px;
+}
+
+#scatterPlot .chart-box {
+    min-height: 560px;
+}
+
+#chart_heatmap {
+    min-height: 420px;
+}
+
+#chart_radarchart {
+    min-height: 420px;
+}
+
+#chart_scatterplot {
+    min-height: 560px;
+}
+
+#heatmap h4,
+#heatmap label,
+#heatmap select,
+#heatmap .chart-box,
+#scatterPlot .scatter-panel,
+#scatterPlot .scatter-header,
+#scatterPlot .filters-row,
+#scatterPlot .chart-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#heatmap h4,
+#scatterPlot h4 {
+    text-align: left;
+    margin-left: 0;
+}
+
+#heatmap label,
+#scatterPlot .filter-label {
+    display: block;
+    text-align: left;
+}
+
+#yVariableSelect {
+    display: block;
+    margin-left: 0;
+}
+
+html,
+body,
+section,
+select,
+button,
+label,
+span,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+text {
+    font-family: Helvetica, Arial, sans-serif;
 }

@@ -2,8 +2,8 @@
 
 (function() {
 const container = document.getElementById("chart_scatterplot");
-const width =container.clientWidth*0.6;
-const height = container.clientHeight;
+const width = Math.max(container.clientWidth * 0.8, 900);
+const height = Math.max(container.clientHeight, 560);
 const margin = { top: 20, right: 40, bottom: 70, left: 80 };
 
 const svg = d3

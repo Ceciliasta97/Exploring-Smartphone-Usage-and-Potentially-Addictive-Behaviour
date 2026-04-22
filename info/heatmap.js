@@ -5,13 +5,12 @@
 (function() {
 // Set up chart size
 const container = document.getElementById("chart_heatmap");
-const containerWidth = container.clientWidth;
-const containerHeight = container.clientHeight;
+const containerWidth = Math.max(container.clientWidth, 600);
+const containerHeight = Math.max(container.clientHeight, 420);
 
-
-const margin = { top: 35, right: 15, bottom: 35, left: 45 };
-const width = containerWidth - margin.left - margin.right;
-const height = containerHeight - margin.top - margin.bottom;
+const margin = { top: 35, right: 15, bottom: 35, left: 80 };
+const width = Math.max(containerWidth - margin.left - margin.right, 485);
+const height = Math.max(containerHeight - margin.top - margin.bottom, 300);
 
 // Create the SVG and move the chart area inside the margins
 const svg = d3.select("#chart_heatmap")
@@ -243,7 +242,7 @@ function drawHeatmap(data, selectedVariable) {
     .attr("class", "axis-label")
     .attr("transform", "rotate(-90)")
     .attr("x", -height / 2)
-    .attr("y", -45)
+    .attr("y", -70)
     .attr("text-anchor", "middle")
     .text(yLabel);
 
@@ -291,7 +290,7 @@ function drawHeatmap(data, selectedVariable) {
   const legendWidth = 160;
   const legendHeight = 8;
   const legendX = width - legendWidth;
-  const legendY = -23;
+  const legendY = -38;
 
   const defs = svg.append("defs");
 
@@ -304,16 +303,20 @@ function drawHeatmap(data, selectedVariable) {
 
   gradient.append("stop")
     .attr("offset", "0%")
-    .attr("stop-color", d3.interpolateOrRd(0));
+    .attr("stop-color", color(1));
+
+  gradient.append("stop")
+    .attr("offset", "50%")
+    .attr("stop-color", color(2));
 
   gradient.append("stop")
     .attr("offset", "100%")
-    .attr("stop-color", d3.interpolateOrRd(1));
+    .attr("stop-color", color(3));
 
   svg.append("text")
     .attr("class", "legend-label")
     .attr("x", legendX)
-    .attr("y", legendY - 6)
+    .attr("y", legendY - 10)
     .style("font-size", "10px")
     .text("Average addiction level");
 
@@ -329,6 +332,7 @@ function drawHeatmap(data, selectedVariable) {
     .attr("class", "legend-label")
     .attr("x", legendX)
     .attr("y", legendY + legendHeight + 15)
+    .attr("fill", "#000000")
     .text("Mild");
 
   svg.append("text")
@@ -336,6 +340,7 @@ function drawHeatmap(data, selectedVariable) {
     .attr("x", legendX + legendWidth / 2)
     .attr("y", legendY + legendHeight + 15)
     .attr("text-anchor", "middle")
+    .attr("fill", "#000000")
     .text("Moderate");
 
   svg.append("text")
@@ -343,6 +348,7 @@ function drawHeatmap(data, selectedVariable) {
     .attr("x", legendX + legendWidth)
     .attr("y", legendY + legendHeight + 15)
     .attr("text-anchor", "end")
+    .attr("fill", "#000000")
     .text("Severe");
 }
 })();

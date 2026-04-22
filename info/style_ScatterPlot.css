@@ -89,7 +89,7 @@ path.domain {
   background-color: rgba(255, 242, 239, 0.88);
   color: #1A2A4F;
   font-size: 14px;
-  font-family: Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   cursor: pointer;
   backdrop-filter: blur(2px);
 }
@@ -249,12 +249,12 @@ path.domain {
   margin-top: 4px;
 }
 
-.scatter-panel{
+.scatter-panel {
   width: 100%;
-  max-width: 1300px;
+  max-width: none;
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
   min-height: 0;
 }
 
