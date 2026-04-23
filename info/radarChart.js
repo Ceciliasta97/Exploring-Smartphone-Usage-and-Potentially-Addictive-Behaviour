@@ -1,8 +1,5 @@
 // https://d3og.com/jnschrag/34c437ce2a3e5c6e92c8aa5835e5d9d9/example/
 // https://stackoverflow.com/questions/24327609/interactive-spider-or-radar-chart-using-d3
-// Source - https://stackoverflow.com/a/26319295
-// Posted by AAhad
-// Retrieved 2026-04-18, License - CC BY-SA 3.0
 
 
 (function() {

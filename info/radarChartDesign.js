@@ -1,3 +1,7 @@
+// Source - https://stackoverflow.com/a/26319295
+// Posted by AAhad
+// Retrieved 2026-04-18, License - CC BY-SA 3.0
+
 var RadarChart = {
   draw: function(id, d, options){
   var cfg = {
