@@ -5,3 +5,6 @@
 2. Right click the 'index.html' file
 3. Click 'Open With Live Server'
 4. The page will open on web browser
+
+### GitHub link
+https://ceciliasta97.github.io/Exploring-Smartphone-Usage-and-Potentially-Addictive-Behaviour/info/ 
