@@ -1,5 +1,5 @@
 // Heatmap structure based on:
-// https://d3-graph-gallery.com/graph/heatmap_style.html
+// https://d3-graph-gallery.com/heatmap.html
 // Adapted for this dataset.
 
 (function() {
