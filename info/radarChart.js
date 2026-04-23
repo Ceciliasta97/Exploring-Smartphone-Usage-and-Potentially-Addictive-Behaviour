@@ -16,13 +16,6 @@ d3.csv("Data.csv").then(function(data) {
         d["sleep_hours"] = +d["sleep_hours"];
         })
 
-    // console.log(data);
-    // console.log(typeof data[0]["daily_screen_time_hours"]);
-    // console.log(typeof data[0]["social_media_hours"]);
-    // console.log(typeof data[0]["gaming_hours"]);
-    // console.log(typeof data[0]["work_study_hours"]);
-    // console.log(typeof data[0]["sleep_hours"]);
-
     const oneUser = data[0];
     // console.log(oneUser);
 
@@ -53,27 +46,11 @@ const radarHeight = radarContainer.clientHeight;
 
     }
 
-    //Call function to draw the Radar chart
-    //Will expect that data is in %'s
-    // RadarChart.draw("#chart", d, mycfg);
-
-
-// const addiction_levelFilter = "Low";
-// const addicted_labelFilter = "0";
-// const stress_levelFilter = "Low";
-
-// // filter data
-// const addiction_levelFiltered = data.filter(function(d) { return d["addiction_level"] === addiction_levelFilter; });
-// const addicted_labelFiltered = data.filter(function(d) { return d["addicted_label"] === addicted_labelFilter; });
-// const stress_levelFiltered = data.filter(function(d) { return d["stress_level"] === stress_levelFilter; });
-
-
-
 
 function updateChart() {
 
 
-        // https://stackoverflow.com/questions/68230024/filter-javascript-array-based-on-multiple-values
+     // https://stackoverflow.com/questions/68230024/filter-javascript-array-based-on-multiple-values
     var filteredData = data.filter(function(d) {
       return  (selectedStressLevel === "All" ||d["stress_level"] === selectedStressLevel) &&
               (selectedAddictionLevel === "All" ||d["addiction_level"] === selectedAddictionLevel);
@@ -94,13 +71,8 @@ function updateChart() {
     console.log(addicted_label_1_group.length);
 
     var radarGraphs = [];
-     
-
-
 
     // check if the data is null
-
-
     if (addicted_label_0_group.length > 0)  {
 
         const averageScreenTime0 = d3.mean(addicted_label_0_group, function(d) {
@@ -200,22 +172,16 @@ function updateChart() {
     updateChart();
     // When the button is changed, run the updateChart function
     d3.select("#stress_level").on("change", function() {
-                // recover the option that has been chosen
                 selectedStressLevel = d3.select(this).property("value");
                 console.log("selectedStressLevel:", selectedStressLevel);
-                // Run the updatechart function upon selection
-                // update(selectedOption)})
                 updateChart();
 
     });
 
 
      d3.select("#addiction_level").on("change", function() {
-                // recover the option that has been chosen
                 selectedAddictionLevel = d3.select(this).property("value");
                 console.log("selectedAddictionLevel:", selectedAddictionLevel);
-                // Run the updatechart function upon selection
-                // update(selectedOption)})
                 updateChart();
 
     });

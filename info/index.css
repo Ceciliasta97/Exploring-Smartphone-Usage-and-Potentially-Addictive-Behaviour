@@ -66,7 +66,7 @@ section {
 
 .radar-controls {
     display: flex;
-    gap: 12px;
+    gap: 40px;
     justify-content: flex-end;
     margin-bottom: 6px;
 }
