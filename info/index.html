@@ -2,154 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Average Addiction Level by Screen Time and Sleep</title>
+  <title>Exploring Smartphone Usage and Potentially Addictive Behaviour</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="style_HeatMap.css">
   <link rel="stylesheet" href="style_ScatterPlot.css">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <h1 style="text-align: center; margin: 20 auto;">What patterns of smartphone usage indicate potentially addictive behaviour when considering multiple 
-    indicators such as usage habits, sleep duration, and stress levels?</h1>
-    <div id = "dashboard">
-    <section id = "heatmap">
-  <h4>Addiction Patterns Across Screen Time and Sleep</h4>
-  <p class="subtitle">
-    This heatmap compares daily screen time with another indicator. Each cell groups users within that
-    range, and the colour shows the average addiction level in that group.
-  </p>
+  <header id="page-intro">
+    <h1>Exploring Smartphone Usage and Potentially Addictive Behaviour</h1>
+    <p class="subtitle">
+      This dashboard explores the question: what patterns of smartphone usage indicate potentially
+      addictive behaviour when considering multiple indicators such as usage habits, sleep duration,
+      and stress levels?
+    </p>
+  </header>
 
-  <label for="yVariableSelect"><strong>Compare screen time with:</strong></label>
-  <select id="yVariableSelect">
-    <option value="sleep">Sleep Hours</option>
-    <option value="stress">Stress Level</option>
-    <option value="workStudy">Work/Study Hours</option>
-    <option value="notifications">Notifications per Day</option>
-    <option value="apps">App Opens per Day</option>
-</select>
-  <div class = "chart-box">
-  <div id="chart_heatmap"></div>
-  </div>
-  <div id="tooltip_heatmap" class="tooltip"></div>
+  <div id="dashboard">
+    <section id="heatmap">
+      <h4 id="heatmap-title">Addiction Patterns Across Screen Time and Sleep Hours</h4>
 
+      <p class="chart-description">
+        This heatmap compares daily screen time with another indicator. Each cell groups users within
+        that range, and colour shows the average addiction level in that group.
+      </p>
+
+      <label for="yVariableSelect"><strong>Compare screen time with:</strong></label>
+      <select id="yVariableSelect">
+        <option value="sleep">Sleep Hours</option>
+        <option value="stress">Stress Level</option>
+        <option value="workStudy">Work/Study Hours</option>
+        <option value="notifications">Notifications per Day</option>
+        <option value="apps">App Opens per Day</option>
+      </select>
+
+      <p class="heatmap-note">Darker colour indicates higher average addiction level.</p>
+
+      <div class="chart-box">
+        <div id="chart_heatmap"></div>
+      </div>
+
+      <div id="tooltip_heatmap" class="tooltip"></div>
     </section>
 
-    <section id = "scatterPlot">
+    <section id="scatterPlot">
+      <div class="scatter-panel">
+        <div class="scatter-header">
+          <h4 id="scatter-title">Risk Score Index by Addiction Level</h4>
 
-    <!-- <main> -->
-            
-    <!-- <p>
-      This visualisation shows how the calculated smartphone addiction risk score changes across the addiction levels in the dataset. 
-      Each point represents a user, and when you move the cursor over a point, more behavioural details appear.
-    </p> -->
-    <div class="scatter-panel">
-         <div class="scatter-header">
-            <h4>Risk Score Index by Addiction Level</h4>
-    <div class="filters-row"> 
-     <div class="controls-group">
-    <span class="filter-label">Filter by gender:</span>
+          <p class="chart-description">
+            This chart shows how the risk score varies across addiction levels. Each point represents
+            a user, allowing variation and outliers to be explored.
+          </p>
 
-    <div class="custom-select" id="genderFilter">
-      <button type="button" class="select-button" id="genderButton">
-        <span id="genderSelected">All</span>
-        <span class="select-arrow">▾</span>
-      </button>
+          <div class="filters-row">
+            <div class="controls-group">
+              <span class="filter-label">Filter by gender:</span>
 
-      <div class="select-menu" id="genderMenu">
-        <div class="select-option selected" data-value="All">
-          <span class="option-radio"></span>
-          <span class="option-label">All</span>
+              <div class="custom-select" id="genderFilter">
+                <button type="button" class="select-button" id="genderButton">
+                  <span id="genderSelected">All</span>
+                  <span class="select-arrow">▾</span>
+                </button>
+
+                <div class="select-menu" id="genderMenu">
+                  <div class="select-option selected" data-value="All">
+                    <span class="option-radio"></span>
+                    <span class="option-label">All</span>
+                  </div>
+
+                  <div class="select-option" data-value="Male">
+                    <span class="option-radio"></span>
+                    <span class="option-label">Male</span>
+                  </div>
+
+                  <div class="select-option" data-value="Female">
+                    <span class="option-radio"></span>
+                    <span class="option-label">Female</span>
+                  </div>
+
+                  <div class="select-option" data-value="Other">
+                    <span class="option-radio"></span>
+                    <span class="option-label">Other</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="controls-group">
+              <span class="filter-label">Filter by age:</span>
+
+              <div class="age-slider-wrapper">
+                <div class="age-values">
+                  <span id="ageMinLabel">18</span>
+                  <span id="ageMaxLabel">35</span>
+                </div>
+
+                <div class="range-slider">
+                  <div class="slider-track" id="sliderTrack"></div>
+                  <input type="range" id="ageMin" min="18" max="35" value="18" step="1">
+                  <input type="range" id="ageMax" min="18" max="35" value="35" step="1">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="select-option" data-value="Male">
-          <span class="option-radio"></span>
-          <span class="option-label">Male</span>
-        </div>
-
-        <div class="select-option" data-value="Female">
-          <span class="option-radio"></span>
-          <span class="option-label">Female</span>
-        </div>
-
-        <div class="select-option" data-value="Other">
-          <span class="option-radio"></span>
-          <span class="option-label">Other</span>
+        <div class="chart-box">
+          <div id="chart_scatterplot"></div>
         </div>
       </div>
-    </div>
-    </div>
 
-    <!-- <div class="age-filter"> -->
-        <div class="controls-group">
-    <span class="filter-label">Filter by age:</span>
-
-    <div class="age-slider-wrapper">
-      <div class="age-values">
-        <span id="ageMinLabel">18</span>
-        <span id="ageMaxLabel">35</span>
-      </div>
-
-      <div class="range-slider">
-        <div class="slider-track" id="sliderTrack"></div>
-        <input type="range" id="ageMin" min="18" max="35" value="18" step="1">
-        <input type="range" id="ageMax" min="18" max="35" value="35" step="1">
-      </div>
-    </div>
-  </div>
-  </div>
-    </div>
-    <div class = "chart-box">
-    <div id="chart_scatterplot"></div>
-    </div>
-    </div>
-    <div id="tooltip_scatterplot"></div>
-  <!-- </main> -->
-
+      <div id="tooltip_scatterplot"></div>
     </section>
 
+    <section id="radarChart">
+      <h4>Addiction Patterns Across Usage Behaviours</h4>
 
-    <section id = "radarChart">
-       <h4 style= "text-align:center"> Addiction Patterns Across Usage Patterns</h4>
-         <p class="subtitle">
-    This radar chart compares the average behavior of addicted and non-addicted users across five indicators, includes social media time,
-     sleeping time, work-study time, gaming, and daily screen time. The purple graph represents the data of addicted users, and the green 
-     graph represents the non-addicted users.
-  </p>
-        <div class = "radar-controls">
-         
+      <p class="chart-description">
+        This radar chart compares the average behaviour of addicted and non-addicted users across
+        five indicators: social media time, sleep time, work-study time, gaming hours, and daily
+        screen time. The purple graph represents addicted users, and the green graph represents
+        non-addicted users.
+      </p>
+
+      <div class="radar-controls">
         <label for="stress_level">Stress level</label>
         <select name="stress level" id="stress_level">
-            <option value="All">All</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
+          <option value="All">All</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
         </select>
 
         <label for="addiction_level">Addiction level</label>
-         <select name="addicition level" id="addiction_level">
-            <option value="All">All</option>
-            <option value="None">None</option>
-            <option value="Mild">Mild</option>
-            <option value="Moderate">Moderate</option>
-            <option value="Severe">Severe</option>
+        <select name="addiction level" id="addiction_level">
+          <option value="All">All</option>
+          <option value="None">None</option>
+          <option value="Mild">Mild</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Severe">Severe</option>
         </select>
+      </div>
 
-    </div>
-        
-    <div class = "chart-box">
-      <div id="chart_radarchart"></div>
-    </div>
+      <div class="chart-box">
+        <div id="chart_radarchart"></div>
+      </div>
 
-    
-
-    <div id = "message"></div>
-
+      <div id="message"></div>
     </section>
-     </div>
-<script src="heatmap.js"></script>
-<script src="scatterPlot.js"></script>
-<script src="radarChartDesign.js"></script>
-<script src="radarChart.js"></script>
-   
+  </div>
+
+  <script src="heatmap.js"></script>
+  <script src="scatterPlot.js"></script>
+  <script src="radarChartDesign.js"></script>
+  <script src="radarChart.js"></script>
 </body>
 </html>

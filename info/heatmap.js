@@ -172,6 +172,9 @@ function drawHeatmap(data, selectedVariable) {
   const yKey = settings.key;
   const yLabel = settings.label;
 
+  document.getElementById("heatmap-title").textContent =
+    `Addiction Patterns Across Screen Time and ${yLabel}`;
+
   // Only keep rows that have a value for the selected Y variable
   const usableData = data.filter(d =>
     !Number.isNaN(d[yKey])
