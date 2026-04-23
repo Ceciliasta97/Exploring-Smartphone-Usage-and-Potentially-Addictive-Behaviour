@@ -1,7 +1,3 @@
-// Source - https://stackoverflow.com/a/26319295
-// Posted by AAhad
-// Retrieved 2026-04-18, License - CC BY-SA 3.0
-
 var RadarChart = {
   draw: function(id, d, options){
   var cfg = {
@@ -58,7 +54,18 @@ var RadarChart = {
             .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
             ;
 
-    var tooltip;
+        d3.select(id).selectAll(".radarTooltip").remove();
+
+    var tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "radarTooltip")
+      .style("position", "absolute")
+      .style("background", "white")
+      .style("border", "1px solid #ccc")
+      .style("padding", "8px")
+      .style("font-size", "12px")
+      .style("pointer-events", "none")
+      .style("opacity", "0");
 
     //Circular segments
     for(var j=0; j<cfg.levels; j++){
@@ -153,6 +160,12 @@ var RadarChart = {
                      .style("fill", function(j, i){return getColor(y)})
                      .style("fill-opacity", cfg.opacityArea)
                      .on('mouseover', function (event, d){
+
+                                        tooltip.html(getTooltipText(y))
+                                              style("left", (event.pageX + 10) + "px")
+                                                .style("top", (event.pageY -20) + "px")
+                                                .style("opacity", "1");
+
                                         const z = "polygon."+d3.select(this).attr("class");
                                         g.selectAll("polygon")
                                          .transition(200)
@@ -161,14 +174,25 @@ var RadarChart = {
                                          .transition(200)
                                          .style("fill-opacity", .7);
                                       })
-                     .on('mouseout', function(){
-                                        g.selectAll("polygon")
-                                         .transition(200)
-                                         .style("fill-opacity", cfg.opacityArea);
+                     .on('mouseout', function(event){
+                                        tooltip.style("left", (event.pageX + 10) + "px")
+                                                .style("top", (event.pageY -20) + "px");
                      });
       series++;
     });
     series=0;
+
+    function getTooltipText(y) {
+      let groupName = y.label==="1" ? "Addicted user" : "Non-addicted user";
+      return `
+        <strong>${groupName}</strong><br>
+        Daily Screen Time: ${y[0].value.toFixed(2)} h<br>
+        Social media time: ${y[1].value.toFixed(2)} h<br>
+        Gaming Time: ${y[2].value.toFixed(2)} h<br>
+        Work-Study Time: ${y[3].value.toFixed(2)} h<br>
+        Sleeping Time: ${y[4].value.toFixed(2)} h
+        `;
+    }
 
 
     d.forEach(function(y, x){
@@ -191,15 +215,10 @@ var RadarChart = {
         .attr("data-id", function(j){return j.axis})
         .style("fill", getColor(y)).style("fill-opacity", .9)
         .on('mouseover', function (event, d){
-                    newX =  parseFloat(d3.select(this).attr('cx')) - 10;
-                    newY =  parseFloat(d3.select(this).attr('cy')) - 5;
-
-                    tooltip
-                        .attr('x', newX)
-                        .attr('y', newY)
-                        .text(Format(d.value))
-                        .transition(200)
-                        .style('opacity', 1);
+                    tooltip.html(getTooltipText(y))
+                                              .style("left", (event.pageX + 10) + "px")
+                                                .style("top", (event.pageY -20) + "px")
+                                                .style("opacity", "1");
 
                     z = "polygon."+d3.select(this).attr("class");
                     g.selectAll("polygon")
@@ -209,24 +228,17 @@ var RadarChart = {
                         .transition(200)
                         .style("fill-opacity", .7);
                   })
+        .on('mousemove', function(event) {
+                    tooltip.style("left", (event.pageX + 10) + "px").style("top", (event.pageY -20) + "px");
+        })
         .on('mouseout', function(){
-                    tooltip
-                        .transition(200)
-                        .style('opacity', 0);
                     g.selectAll("polygon")
                         .transition(200)
                         .style("fill-opacity", cfg.opacityArea);
                   })
-        .append("svg:title")
-        .text(function(j){return Math.max(j.value, 0)});
 
       series++;
     });
-    //Tooltip
-    tooltip = g.append('text')
-               .style('opacity', 0)
-               .style('font-family', 'Helvetica, Arial, sans-serif')
-               .style('font-size', '13px');
   }
 };
 
