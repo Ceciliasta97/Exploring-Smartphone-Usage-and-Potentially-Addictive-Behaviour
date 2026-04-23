@@ -166,7 +166,7 @@ var RadarChart = {
                      .on('mouseover', function (event, d){
 
                                         tooltip.html(getTooltipText(y))
-                                              style("left", (event.pageX + 10) + "px")
+                                              .style("left", (event.pageX + 10) + "px")
                                                 .style("top", (event.pageY -20) + "px")
                                                 .style("opacity", "1");
 
@@ -180,7 +180,8 @@ var RadarChart = {
                                       })
                      .on('mouseout', function(event){
                                         tooltip.style("left", (event.pageX + 10) + "px")
-                                                .style("top", (event.pageY -20) + "px");
+                                                .style("top", (event.pageY -20) + "px")
+                                                .style("opacity", "0");
                      });
       series++;
     });
@@ -236,6 +237,8 @@ var RadarChart = {
                     tooltip.style("left", (event.pageX + 10) + "px").style("top", (event.pageY -20) + "px");
         })
         .on('mouseout', function(){
+
+          tooltip.style("opacity", "0");
                     g.selectAll("polygon")
                         .transition(200)
                         .style("fill-opacity", cfg.opacityArea);
